@@ -3,6 +3,9 @@ layout: default
 css: ['sidebar-post-nav.css']
 ---
 {% include jumbotron.html %}
+
+{% capture image_root %}"/assets/images/{% endcapture %}
+{% capture image_cdn_root %}"{{ site.cdn_root }}/assets/images/{% endcapture %}
 <article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="row">
@@ -10,7 +13,7 @@ css: ['sidebar-post-nav.css']
         {% if page.no-post-nav %}
         <div class="col-md-12 markdown-body">
 
-            {{ content }}
+            {{ content | replace: image_root, image_cdn_root }}
 
             <!-- Comments -->
             {% include disqus-comments.html %}
@@ -18,7 +21,7 @@ css: ['sidebar-post-nav.css']
         {% else %}
         <div class="col-md-8 markdown-body">
 
-            {{ content }}
+            {{ content | replace: image_root, image_cdn_root }}
 
             <!-- Comments -->
             {% include disqus-comments.html %}
